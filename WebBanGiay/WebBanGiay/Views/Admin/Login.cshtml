@@ -1,0 +1,95 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Amin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="~/Content/Template/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Custom Theme files -->
+    <link href="~/Content/Template/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--js-->
+    <script src="~/Scripts/js/jquery-2.1.1.min.js"></script>
+    <!--icons-css-->
+    <link href="~/Content/Template/css/font-awesome.css" rel="stylesheet">
+    <!--Google Fonts-->
+    <link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
+    <!--static chart-->
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-main">
+            <div class="login-head">
+                <h1>HỆ THỐNG QUẢN TRỊ</h1>
+            <h4 style=" color:red; text-align:center;"> @ViewBag.Thongbao</h4>
+            </div>
+            <div class="login-block">
+                @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true)
+                <form>
+
+                    @*<input name="username" type="text" required="" placeholder="Username" />
+                    <input name="password" type="password" required="" placeholder="Password" />*@
+
+                    @Html.TextBox("username", null, new { type = "text", name = "username", placeholder = "Username", required = @ViewData["Loi1"] })
+                    @Html.TextBox("password", null, new { type = "password", name = "password", placeholder = "Password", required = "Loi2" })
+                    @*<input type="password" name="password" class="lock" placeholder="Password" required= @ViewData["Loi2"]>*@
+                    <div class="forgot-top-grids">
+                        <div class="forgot-grid">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="brand1" value="">
+                                    <label for="brand1"><span></span>Remember me</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="forgot">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <input type="submit" name="Sign In" value="Login">
+
+                    <h3>Not a member?<a href="/Admin/AdminLogin"> Sign up now</a></h3>
+                    <h2>or login with</h2>
+                    <div class="login-icons">
+                        <ul>
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </form>
+
+                    <h5><a href="/Admin/Index">Go Back to Home</a></h5>
+                }
+            </div>
+                
+        </div>
+    </div>
+    <!--inner block end here-->
+    <!--copy rights start here-->
+   
+    <!--COPY rights end here-->
+    <!--scrolling js-->
+    <script src="~/Scripts/js/jquery.nicescroll.js"></script>
+    <script src="~/Scripts/js/scripts.js"></script>
+    <!--//scrolling js-->
+    <script src="~/Scripts/js/bootstrap.js"></script>
+    <!-- mother grid end here-->
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,105 @@
+﻿@model IEnumerable<WebBanGiay.Models.DONDATHANG>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="market-update-block clr-block-1">
+            <div class="col-md-8 market-update-left">
+                <div class="huge" style="color:white;"><h5>@string.Format("{0:0,0}", @TempData["TongDoanhThu"]) VNĐ</h5></div>
+                <h4>Tổng doanh thu</h4>
+                @Html.ActionLink("Chi tiết", "TongDonHang", "Admin")
+            </div>
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-money fa-5x" style="color:white;"></i>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 ">
+        <div class="market-update-block clr-block-2">
+            <div class="col-md-8 market-update-left" style="color:white;">
+                <div class="huge">@TempData["TongKhachHang"]</div>
+                <div>Thành viên</div>
+                @Html.ActionLink("Chi tiết", "TaiKhoanKH", "Admin")
+            </div>
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-user fa-5x" style="color:white;"> </i>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="market-update-block">
+            <div class="col-md-8 market-update-left" style="color:white;">
+                <div class="huge">@TempData["DonHangChuaDuyet"]</div>
+                <div>Đơn hàng mới!</div>
+                @Html.ActionLink("Chi tiết", "DanhSachChuaDuyet", "Admin", new { style = "color:red;" })
+            </div>
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-shopping-cart fa-5x"> </i>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+
+
+    <div class="col-lg-3 col-md-6  ">
+        <div class="market-update-block clr-block-3">
+            <div class="col-md-8 market-update-left" style="color:white;">
+                <div class="huge">@TempData["DonHangChoGiao"]</div>
+                <div>Đang giao!</div>
+                @Html.ActionLink("Chi tiết", "DanhSachChuaGiao", "Admin", new { style = "color:red;" })
+            </div>
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-truck fa-5x"> </i>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</div>
+    </div>
+
+        <!-- /.row -->
+        <br />
+        <hr />
+        <div class="container">
+            <div class="col-lg-12">
+                <div class="col-lg-2">
+
+                </div>
+                <div class="col-lg-6">
+                    @using (Html.BeginForm("TKDoanhThuTheoNgay", "Admin", FormMethod.Get, new { @class = "col-lg-12" }))
+                    {
+                        <h3 style="color:#c0392b">Tính doanh thu theo ngày  </h3>
+                        if (TempData["DoanhThuTheoNgay"] == null)
+                        {
+                            TempData["DoanhThuTheoNgay"] = "0";
+                        }
+                        <lable style="">Từ ngày: </lable>
+                        @Html.TextBox("NgayA", TempData["NgayA"], "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                        <lable style="">Đến ngày: </lable>
+                        @Html.TextBox("NgayB", TempData["NgayB"], "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                        <lable style="">Tổng doanh thu: </lable>
+                        <div class="form-control">@string.Format("{0:0,0}", TempData["DoanhThuTheoNgay"]) VNĐ</div>
+                        <br />
+                        <button type="submit" class="btn btn-warning form-control" style="font-size:13pt "> Tính tiền  <span class="fa fa-usd"></span> </button>
+                    }
+                </div>
+                <div class="col-lg-4">
+
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
+
+
+

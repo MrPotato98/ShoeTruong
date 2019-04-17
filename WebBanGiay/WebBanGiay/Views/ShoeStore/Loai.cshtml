@@ -1,0 +1,15 @@
+﻿@model IEnumerable<WebBanGiay.Models.LOAI>
+
+<p class="lead">Loai giay</p>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4">
+
+        </div>
+        <a href="@Url.Action("SPtheoloai","ShoeStore", new { id = item.TenLOAI})"
+           class="list-group-item">
+            @item.TenLOAI
+        </a>
+    }
+</div>

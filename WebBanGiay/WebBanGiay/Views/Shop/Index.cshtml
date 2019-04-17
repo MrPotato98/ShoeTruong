@@ -1,0 +1,82 @@
+﻿@using WebBanGiay.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<GIAY>
+
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_LayoutCategory.cshtml";
+}<div></div>
+<div class="container" >
+    <div class="row">
+
+        <div class="row col-xl-9 col-lg-8 col-md-7">
+            <div class="col-xl-12 col-lg-12 col-md-12" style="margin-bottom:20px;">
+                <!-- Start Filter Bar -->
+                <div class="filter-bar d-flex flex-wrap align-items-center">
+                    <div class="pagination" style="border-left: 0;">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page, @class = "page-link" }))
+                    </div>
+                </div>
+                <!-- End Filter Bar -->
+                <!-- Start Best Seller -->
+                <section class="lattest-product-area pb-40 category-list">
+                    <div class="row">
+                    </div>
+                </section>
+                <!-- End Best Seller -->
+            </div>
+            @foreach (var x in Model)
+            {
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <a href="@Url.Action("Details", "ShoeStore", new {id=x.MaGIAY})"><img class="img-fluid" src="~/image/@Url.Content(@x.Anhbia)" style="height:200px;width:100%" alt=""></a>
+                        <div class="product-details">
+                            <h6>
+                                @x.TenGIAY
+                            </h6>
+                            <div class="price">
+                                <h6>@x.Giaban VND</h6>
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="@Url.Action("Details", "ShoeStore", new {id=x.MaGIAY})" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        </div>
+    </div>
+
+@*@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("a.category").on("click", function () {
+                var id = $(this).attr("data-id");
+                $.ajax({
+                    data: { "id": id },
+                    url: "/Shop/GetDataSP",
+                    type: "POST",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response.data);
+                        let element1 = "<div class=\"col-lg-4 col-md-6\">";
+                        let element2 = "<div class=\"single-product\">";
+                        let element3 = "<a href=" + response.data.MaGIAY + ">";
+                        $(".category-list .row").append(element1 + element2 + element3);
+                    },
+                    error: (error) => {
+                        console.log(error)
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+}*@

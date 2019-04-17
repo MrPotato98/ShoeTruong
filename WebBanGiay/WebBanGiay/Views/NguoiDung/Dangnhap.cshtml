@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Dangnhap";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<!-- Head -->
+
+<head>
+
+    <!-- //For-Mobile-Apps -->
+    <!-- Style -->
+    <link rel="stylesheet" href="~/Content/styleLogin.css" type="text/css" media="all" />
+
+</head>
+<!-- //Head -->
+<!-- Body -->
+<body style="background: url(/image/banner2.jpg) no-repeat">
+    <h3 style="color:red; text-align:center">@ViewBag.ThongBao</h3>
+    <h1 class="title text-bl font-weight-bold">LOGIN & REGISTER FORMS</h1>
+    <div class="container">
+
+        <div class="login">
+            @using (Html.BeginForm("Dangnhap", "NguoiDung", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <form method="post">
+                    <label>Tên Đăng Nhập</label>
+                    @Html.TextBox("TenDN", null, new { @class = "user", placeholder = "UserName", type = "text", required = @ViewData["Loi1"] })
+                    <label>Password</label>
+                    @Html.TextBox("Matkhau", null, new { @class = "pass", placeholder = "Password", type = "password", required = @ViewData["Loi2"] })
+
+                    <ul>
+                        <li>
+                            <input type="checkbox" id="brand1" value="">
+                            <label for="brand1"><span></span>Remember me</label>
+                        </li>
+                    </ul>
+                    <input type="Submit" name="" value="Đăng nhập" />
+                </form>
+                <div class="clear"></div>
+            }
+            </div>
+
+        <div class="social agileits">
+            <h5>Or Login with</h5>
+            <ul class="social-icons">
+                @*<li><a href="#" class="facebook" title="Go to Our Facebook Page"></a></li>*@
+                <li><a href="#" class="googleplus" title="Go to Our Google Plus Account"></a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+
+        <div class="reg w3l aits">
+
+            <h3>Not a member?</h3>
+            <a class="popup-with-zoom-anim hvr-underline-from-left " href="#small-dialog" @*data-toggle="modal" data-target="#small-dialog"*@>Register Here</a>
+            <div class="clear"></div>
+
+            <!-- Popup-Box -->
+
+            <div id="popup w3l">
+                <div id="small-dialog" class="mfp-hide aits">
+                    <div class="pop_up agileits">
+                        <div class="register">
+                            @using (Html.BeginForm("Dangky","NguoiDung",FormMethod.Post))
+                            {
+                                @Html.ValidationSummary(true)
+                                <form method="post" @*data-dismiss="dialog"*@>
+                                    @Html.TextBox("HotenKH", null, new { @id = "FirstName", placeholder = "Họ tên", type = "text", required = @ViewData["Loi1"] })
+                                    @Html.TextBox("TenDN", null, new { @class = "user", placeholder = "UserName", type = "text", required = @ViewData["Loi2"] })
+                                    @Html.Password("Matkhau", null, new { @class = "pass", placeholder = "Password", type = "password", required = @ViewData["Loi3"] })
+                                    @Html.Password("Matkhaunhatrlai", null, new { @class = "lessgap", placeholder = "Confirm Password", type = "password", required = @ViewData["Loi4"] })
+                                    <label>Email</label>
+                                    @Html.TextBox("Email", null, new { @class = "user", placeholder = "Email", type = "email", required = @ViewData["Loi7"] })
+                                    <label>Số Điện Thoại</label>
+                                    @Html.TextBox("Dienthoai", null, new { @class = "lessgap", placeholder = "Phone Number", type = "text", required = @ViewData["Loi8"] })
+                                    <label>Ngày Sinh</label>
+                                    @Html.TextBox("Ngaysinh", null, new { @class = "user", Name = "Ngaysinh", placeholder = "DayOfBirth", type = "date", required = @ViewData["Loi5"] })
+                                    <label>Địa Chỉ</label>
+                                    @Html.TextBox("Diachi", null, new { placeholder = "Address", type = "text", required = @ViewData["Loi6"] })
+
+                                    <div class="send-button">
+                                        <input type="Submit" name="name" value="Đăng kí" />
+                                    </div>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- //Popup-Box -->
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Custom-JavaScript-File-Links -->
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <!-- pop-up-box -->
+    <script src="~/Scripts/jquery.magnific-popup.js" type="text/javascript"></script>
+    <script>
+            $(document).ready(function () {
+                $('.popup-with-zoom-anim').magnificPopup({
+                    type: 'inline',
+                    fixedContentPos: false,
+                    fixedBgPos: true,
+                    overflowY: 'auto',
+                    closeBtnInside: true,
+                    preloader: false,
+                    midClick: true,
+                    removalDelay: 300,
+                    mainClass: 'my-mfp-zoom-in'
+                });
+            });
+    </script>
+    <!--//pop-up-box -->
+    <!-- //Custom-JavaScript-File-Links -->
+
+
+
+
+</body>
+<!-- //Body -->
+
+</html>
+

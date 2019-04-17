@@ -1,0 +1,56 @@
+﻿@using WebBanGiay.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<GIAY>
+
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+}
+
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>SHOP</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="@Url.Action("Index", "ShoeStore")">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="@Url.Action("Index", "Shop")">Shop</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container" style="padding-top: 100px;">
+    <div class="row">
+        @*<div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="sidebar-categories">
+                <div class="head">Browse Categories</div>
+                <ul class="main-categories">
+                    @foreach (var item in ViewData["loai"] as IEnumerable<WebBanGiay.Models.LOAI>)
+                    {
+                        <li class="main-nav-list">
+                            <a class="category" href="@Url.Action("SPtheoloai", "Shop", new { @id = 1})">
+                                <span class="lnr lnr-arrow-right"></span>@item.TenLOAI
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>*@
+        <div class="col-xl-9 col-lg-8 col-md-7">
+            <!-- Start Filter Bar -->
+            <div class="filter-bar d-flex flex-wrap align-items-center">
+                <div class="pagination" style="border-left: 0;">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page, @class = "page-link" }))
+                </div>
+            </div>
+            <!-- End Filter Bar -->
+            <!-- Start Best Seller -->
+            <section class="lattest-product-area pb-40 category-list">
+                <div class="row">
+                </div>
+            </section>
+            <!-- End Best Seller -->
+        </div>
+    </div>
+</div>
