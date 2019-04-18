@@ -1,0 +1,65 @@
+﻿@model WebBanGiay.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "XoaKH";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h4 style="color:red;margin-bottom: 20px">Are you sure you want to delete this?</h4>
+
+
+
+
+<div style="white-space:nowrap">
+    <table class="table">
+        <thead>
+            <tr style="color: brown">
+                <th>
+                    Họ và tên
+                </th>
+                <th>
+                    Tài khoản
+                </th>
+
+                <th>Email</th>
+                <th> Địa chỉ khách hàng</th>
+                <th>  Điện thoại khách hàng</th>
+                <th> Ngày sinh </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Taikhoan)
+                </td>
+                <td>@Html.DisplayFor(model => model.Email) </td>
+                <td>
+                    @Html.DisplayFor(model => model.DiachiKH)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.DienthoaiKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Ngaysinh)
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "TaiKhoanKH")
+    </div>
+}

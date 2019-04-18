@@ -1,0 +1,53 @@
+﻿@model WebBanGiay.Models.GIAY
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center; margin-bottom:30px">THÔNG TIN CHI TIẾT</h2>
+
+
+
+<div style="white-space:nowrap">
+<table class="table">
+    <thead>
+        <tr style="color: brown">
+            <th>
+                Tên giày
+            </th>
+            <th>
+                Giá bán
+            </th>
+            <th>Mô tả</th>
+            <th>Ảnh bìa</th>
+            <th> Ngày cập nhật</th>
+            <th>  Số lượng tồn</th>
+            <th>  Mã loại</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Html.DisplayFor(model => model.TenGIAY)</td>
+            <td>@Html.DisplayFor(model => model.Mota)
+            <td>@Html.DisplayFor(model => model.Mota)
+            <td>
+                <img src="@Url.Content("~/image/"+ Model.Anhbia)" width="120px" /></td>
+            <td>
+                @String.Format("{0:MM/dd/yyyy}", Model.Ngaycapnhat) VNĐ</td>
+            <td>
+                @Html.DisplayFor(model => model.Soluongton)
+            </td>
+            <td>@Html.DisplayFor(model => model.MaLOAI)
+                </td>
+        </tr>
+            
+    </tbody>
+</table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaGIAY }) |
+    @Html.ActionLink("Back to List", "Giay")
+</p>

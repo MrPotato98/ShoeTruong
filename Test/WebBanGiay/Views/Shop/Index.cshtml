@@ -1,0 +1,58 @@
+﻿@using WebBanGiay.Models
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+}
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Shop Category page</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/ShoeStore/Index">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/Shop/">Shop<span class="lnr lnr-arrow-right"></span></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="sidebar-categories">
+                <div class="head">Browse Categories</div>
+                <ul class="main-categories">
+                    @foreach (var i in Model)
+                    {
+                        <li class="main-nav-list"><a href="#" data-id="@i.MALOAI">@i.TenLOAI</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-7 list-giay">
+            @{Html.RenderAction("SPtheoloai", new { id = 1 });}
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".main-nav-list a").on("click", function () {
+                var id = $(this).attr("data-id");
+                console.log(id);
+                $.ajax({
+                    url: '/Shop/SPtheoloai/' + id,
+                    success: function (result) {
+                        console.log(result);
+                        $('.list-giay').html(result);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+}

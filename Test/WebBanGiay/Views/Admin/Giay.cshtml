@@ -1,0 +1,113 @@
+﻿@model PagedList.PagedList<WebBanGiay.Models.GIAY>
+@using WebBanGiay.Models
+@using PagedList.Mvc;
+<style>
+    .new {
+        text-align: center;
+    }
+    .aa{
+        width:20px;
+        background-color:aqua;
+        height:20px;
+    }
+</style>
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>....</text>
+    }
+}
+
+@{
+    ViewBag.Title = "Giay";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center; color:brown; margin:60px 0px">QUẢN LÝ THÔNG TIN GIÀY</h2>
+
+<p class="new">
+    @Html.ActionLink("THÊM MỚI", "Create", new { id = 51970 }, new { id = "PoPrint", @class = "new btn btn-danger" })
+</p>
+@*Tạo liên kết các trang*@
+<div style="overflow-x:scroll">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width:200px">
+                    Tên giày
+                </th>
+                <th style="width:100px">
+                    Giá bán
+                </th>
+                <th style="width:300px">
+                    Mô tả
+                </th>
+                <th style="width:120px">
+                    Ảnh bìa
+                </th>
+                <th style="width:150px">
+                    Ngày cập nhật
+                </th>
+                <th style="width:120px">
+                    SL.Tồn
+                </th>
+                <th style="width:120px">
+                    Tên loại
+                </th>
+                <th style="width:200px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenGIAY)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Giaban)
+                    </td>
+                    <td>
+                        @Truncate(item.Mota, 100)
+                    </td>
+                    <td>
+                        <img style="width:200px" src="~/image/@Url.Content(item.Anhbia)" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Soluongton)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LOAI.MALOAI)
+                    </td>
+                    <td style="white-space:nowrap">
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaGIAY }, new { id = "PoPrint", @class = "new btn btn-primary" }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaGIAY }, new { id = "PoPrint", @class = "new btn btn-info" }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaGIAY }, new { id = "PoPrint", @class = "new btn btn-success" })
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="col-12">
+    @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;*@
+    <nav class="blog-pagination justify-content-center d-flex">
+        <ul class="pagination">
+            <li>
+                @Html.PagedListPager(Model, page => Url.Action("Giay", new { page = page, @class = "aa" }))
+            </li>
+        </ul>
+    </nav>
+
+</div>

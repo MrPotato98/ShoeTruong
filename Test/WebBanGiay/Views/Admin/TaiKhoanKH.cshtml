@@ -1,0 +1,101 @@
+﻿@model IEnumerable<WebBanGiay.Models.KHACHHANG>
+
+@{
+    ViewBag.Title = "Danh sách khách hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Dashboard</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Table</a></li>
+                    <li class="active">Data table</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+
+</div>
+<div class="content mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Data Table</strong>
+                </div>
+                <div class="card-body">
+                    <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.HoTen)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Taikhoan)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Matkhau)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DiachiKH)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DienthoaiKH)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Ngaysinh)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HoTen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Taikhoan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Matkhau)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DiachiKH)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DienthoaiKH)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Ngaysinh)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Xóa", "XoaKH", new { id = item.MaKH }, new { id = "PoPrint", @class = "new btn btn-success" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿@using WebBanGiay.Models
+@model List<Giohang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+}
+
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Giỏ hàng</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/ShoeStore/Index">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/Shop/Index">Shop<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/Giohang/Giohang">Giỏ Hàng</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<h2>Giohang</h2>
+
+<style>
+    .a {
+        color: #fff;
+    }
+    .b {
+        color: #fff;
+    }
+</style>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">	Tên giày	</th>
+            <th scope="col">Ảnh bìa</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Đơn giá</th>
+            <th scope="col">Thành tiền</th>
+            <th scope="col"> Action</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.sTengiay</td>
+                <td><a href="@Url.Action("Details", "ShoeStore", new { id = item.iMagiay })"><img src="~/image/@Url.Content(@item.sAnhbia)" style="width:100px;" /></a></td>
+                @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @iMaSP = item.iMagiay }))
+                {
+                    <td>
+                        <input type="number" min="1" name="txtSoluong" value="@item.iSoluong" />
+                    </td>
+
+                    <td>@String.Format("{0:0,0}", item.dDongia)</td>
+                    <td>@String.Format("{0:0,0}", item.dThanhtien)</td>
+                    <td><a href="/GioHang/XoaGioHang/?iMasp=@item.iMagiay"><i class="far fa-trash-alt"></i></a> <button type="submit" value="Cập Nhật" style="background-color: transparent; border: none; cursor: pointer;"><i class="fas fa-sync"></i></button></td>
+                    @*<td>@Html.ActionLink("x", "XoaGiohang", new { @iMasp = item.iMagiay, @class="" })</td>?*@
+                }
+
+            </tr>
+        }
+
+    </tbody>
+    <tr style="font-weight: bold; color:red;">
+        <td colspan="4">Số lượng giày : @ViewBag.Tongsoluong</td>
+        <td colspan="4">Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VND </td>
+    </tr>
+
+
+
+        <div class=" row col-lg-12 col-12 col-md-12"></div>
+            
+            <td colspan="4"> 
+                <button class="btn btn-success" style="color:#fff">@Html.ActionLink("ĐẶT HÀNG", "DatHang", "GioHang", new object { }, new { @class = "a" })</button>
+            </td>
+            <td colspan="4">
+                <button class="btn btn-danger" style="color:#fff">@Html.ActionLink("Xóa gio hang", "XoaTatcaGiohang", new object { }, new { @class = "b" })</button>
+            </td>
+        </tr>
+</table>
+
